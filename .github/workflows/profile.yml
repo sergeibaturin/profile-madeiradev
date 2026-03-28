@@ -42,4 +42,4 @@ jobs:
 
       - name: Deploy to S3
         run: |
-          aws s3 sync ./packages/profile/dist s3://profile.madeiradev.com --delete
+          aws s3 sync ./apps/profile/dist s3://profile.madeiradev.com --delete
