@@ -1,0 +1,45 @@
+name: DEPLOY LANDING TO AWS
+
+on:
+  push:
+    tags:
+      - 'profile-*'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v3
+        with:
+          version: 10
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build PROFILE
+        run: pnpm build:landing
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: us-west-1
+          role-session-name: GitHubActionsSession
+
+      - name: Deploy to S3
+        run: |
+          aws s3 sync ./packages/profile/dist s3://profile.madeiradev.com --delete
