@@ -1,6 +1,6 @@
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import { Route, Routes } from "react-router-dom";
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import { Route, Routes } from 'react-router-dom'
 
 function Home() {
   return (
@@ -8,7 +8,7 @@ function Home() {
       <Typography variant="h4">Home</Typography>
       <Typography>Welcome to the Admin panel.</Typography>
     </Box>
-  );
+  )
 }
 
 function Dashboard() {
@@ -17,7 +17,7 @@ function Dashboard() {
       <Typography variant="h4">Dashboard</Typography>
       <Typography>Metrics and charts will go here.</Typography>
     </Box>
-  );
+  )
 }
 
 function Settings() {
@@ -26,7 +26,7 @@ function Settings() {
       <Typography variant="h4">Settings</Typography>
       <Typography>Application settings will go here.</Typography>
     </Box>
-  );
+  )
 }
 
 export function RouterConfig() {
@@ -36,5 +36,5 @@ export function RouterConfig() {
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/settings" element={<Settings />} />
     </Routes>
-  );
+  )
 }

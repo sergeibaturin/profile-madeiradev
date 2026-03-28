@@ -5,13 +5,17 @@
   "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    }
+      "types": "./src/index.ts",
+      "import": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./assets/*": "./src/assets/*"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "vite build && tsc -p tsconfig.build.json",
     "dev": "vite build --watch",
@@ -37,5 +41,8 @@
     "typescript": "^5.4.5",
     "vite": "^5.4.8",
     "vite-plugin-dts": "^4.3.0"
+  },
+  "dependencies": {
+    "@mui/icons-material": "^7.3.9"
   }
 }

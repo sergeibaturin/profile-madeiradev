@@ -6,9 +6,11 @@
     "dev": "pnpm --filter './apps/*' --parallel run dev",
     "build": "pnpm --filter './packages/*' run build && pnpm --filter './apps/*' run build",
     "lint": "pnpm --filter './packages/*' --filter './apps/*' run lint",
-    "type-check": "pnpm --filter './packages/*' --filter './apps/*' run type-check"
+    "type-check": "pnpm --filter './packages/*' --filter './apps/*' run type-check",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,md}\""
   },
   "devDependencies": {
+    "prettier": "^3.8.1",
     "typescript": "^5.4.5"
   },
   "engines": {
@@ -16,6 +18,8 @@
     "pnpm": ">=9"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["esbuild"]
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
   }
 }
