@@ -31,7 +31,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build PROFILE
-        run: pnpm build:profile
+        run: pnpm --filter profile build
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
