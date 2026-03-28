@@ -1,0 +1,21 @@
+{
+  "name": "profile-madeiradev",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "pnpm --filter './apps/*' --parallel run dev",
+    "build": "pnpm --filter './packages/*' run build && pnpm --filter './apps/*' run build",
+    "lint": "pnpm --filter './packages/*' --filter './apps/*' run lint",
+    "type-check": "pnpm --filter './packages/*' --filter './apps/*' run type-check"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  },
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=9"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild"]
+  }
+}
