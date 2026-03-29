@@ -1,1 +1,1 @@
-export { ScrollIndicator } from './scroll-indicator.tsx'
+export { ScrollIndicator } from './scroll-indicator'
