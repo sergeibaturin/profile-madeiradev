@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 
 export const FullMenu = () => {
   return (
-    <Box>
+    <Box sx={{ position: 'sticky', top: 100 }}>
       {appRoutes
         .filter(route => route.showInHeader)
         .map(route => (
