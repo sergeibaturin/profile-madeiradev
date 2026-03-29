@@ -43,6 +43,7 @@
     "vite-plugin-dts": "^4.3.0"
   },
   "dependencies": {
-    "@mui/icons-material": "^7.3.9"
+    "@mui/icons-material": "^7.3.9",
+    "axios": "^1.7.0"
   }
 }

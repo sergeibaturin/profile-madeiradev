@@ -6,4 +6,6 @@ export { HeroLogoIcon }
 export { MenuIcon }
 export { Button } from './components/Button'
 export { ScrollIndicator }
+export { SharedThemeProvider } from './components/SharedThemeProvider'
+export { createApiClient } from './api/createApiClient'
 export * from './hooks'
