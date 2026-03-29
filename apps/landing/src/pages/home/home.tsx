@@ -194,7 +194,9 @@ export const Home = () => {
 
           <Button
             component="a"
-            href="https://profile.madeiradev.com"
+            // href="https://profile.madeiradev.com"
+            href="https://calendar.app.google/3P5PXptTcdtggiqb7"
+            target="_blank"
             variant="contained"
             size="large"
             sx={{
@@ -209,7 +211,7 @@ export const Home = () => {
               '&:hover': { backgroundColor: '#2aa8d4' },
             }}
           >
-            Get Started
+            BOOK A CALL
           </Button>
         </Paper>
       </Box>
