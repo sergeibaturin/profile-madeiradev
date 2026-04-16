@@ -41,7 +41,7 @@ export const GetTutorial = () => {
       return
     }
     const controller = new AbortController()
-    fetch(`/pdfs/${pdfSlug}.pdf`, { method: 'HEAD', signal: controller.signal })
+    fetch(`/pdfs/${pdfSlug}.pdf`, { method: 'GET', signal: controller.signal })
       .then(res => {
         const isPdf = res.headers.get('Content-Type')?.includes('application/pdf')
         if (res.ok && isPdf) {
