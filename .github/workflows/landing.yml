@@ -32,6 +32,8 @@ jobs:
 
       - name: Build LANDING
         run: pnpm --filter landing... build
+        env:
+          VITE_API_URL: ${{ vars.VITE_API_URL }}
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
