@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { useSearchParams, useNavigate } from 'react-router-dom'
 import { Box, Button, Container, TextField, Typography } from '@mui/material'
 import { postGetTutorial } from '../../api/get-tutorial'
 import { useEmailValidation } from '@repo/core'
@@ -24,84 +24,42 @@ const cardSx = {
   gap: 3,
 }
 
-type SlugState = 'checking' | 'valid' | 'invalid'
+type SlugState = 'valid' | 'invalid'
 
 export const GetTutorial = () => {
-  const { pdfSlug } = useParams<{ pdfSlug: string }>()
+  const [searchParams] = useSearchParams()
   const navigate = useNavigate()
   const { email, error, setEmail, validate } = useEmailValidation()
   const [downloaded, setDownloaded] = useState(false)
   const [loading, setLoading] = useState(false)
   const [apiError, setApiError] = useState('')
-  const [slugState, setSlugState] = useState<SlugState>('checking')
-
-  useEffect(() => {
-    if (!pdfSlug) {
-      setSlugState('invalid')
-      return
-    }
-    const controller = new AbortController()
-    fetch(`/pdfs/${pdfSlug}.pdf`, { method: 'GET', signal: controller.signal })
-      .then(res => {
-        const isPdf = res.headers.get('Content-Type')?.includes('application/pdf')
-        if (res.ok && isPdf) {
-          setSlugState('valid')
-        } else {
-          setSlugState('invalid')
-        }
-      })
-      .catch(err => {
-        // AbortError on cleanup — ignore; any real network error treats slug as invalid
-        if (err.name !== 'AbortError') {
-          setSlugState('invalid')
-        }
-      })
-    return () => controller.abort()
-  }, [pdfSlug])
+  const [slugState] = useState<SlugState>('valid')
+  const pdf = searchParams.get('pdf') ?? ''
 
   const handleSubmit = async () => {
     if (!validate()) return
     setApiError('')
     setLoading(true)
     try {
-      const result = await postGetTutorial(email)
+      const result = await postGetTutorial(email, pdf)
       if (!result.success) {
         setApiError(result.error)
         return
       }
       if (slugState === 'valid') {
         const link = document.createElement('a')
-        link.href = `/pdfs/${pdfSlug}.pdf`
-        link.download = `${pdfSlug}.pdf`
+        link.href = result.data.url
+        link.download = `${pdf}.pdf`
         document.body.appendChild(link)
         link.click()
         document.body.removeChild(link)
         setDownloaded(true)
       }
-    } catch {
-      setApiError('Something went wrong. Please try again.')
+    } catch (err) {
+      setApiError(err instanceof Error ? err.message : 'Something went wrong')
     } finally {
       setLoading(false)
     }
-  }
-
-  if (slugState === 'checking') {
-    return (
-      <Container maxWidth="sm" sx={containerSx} disableGutters>
-        <Box sx={cardSx}>
-          <Typography
-            sx={{
-              fontFamily: 'JetBrains Mono',
-              fontSize: '0.9rem',
-              color: '#6f6f6f',
-              textAlign: 'center',
-            }}
-          >
-            Checking...
-          </Typography>
-        </Box>
-      </Container>
-    )
   }
 
   if (slugState === 'invalid') {
@@ -237,8 +195,6 @@ export const GetTutorial = () => {
           onKeyDown={e => e.key === 'Enter' && handleSubmit()}
           error={!!error}
           helperText={error}
-          InputLabelProps={{ sx: { fontFamily: 'JetBrains Mono' } }}
-          inputProps={{ sx: { fontFamily: 'JetBrains Mono' } }}
         />
 
         <Button

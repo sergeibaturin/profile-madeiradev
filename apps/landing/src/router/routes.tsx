@@ -6,7 +6,7 @@ export const routes = {
   HOME: '/',
   ABOUT: '/about',
   TERMS: '/terms',
-  GET_TUTORIAL: '/get-tutorial/:pdfSlug',
+  GET_TUTORIAL: '/get-tutorial',
 }
 
 export const appRoutes = [

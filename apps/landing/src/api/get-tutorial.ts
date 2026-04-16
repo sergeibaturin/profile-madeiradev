@@ -2,7 +2,8 @@ const API_URL = import.meta.env.VITE_API_URL
 
 export interface GetTutorialSuccess {
   success: true
-  data: { pdfSlug: string; message: string }
+  data: { url: string; message: string }
+  meta: {}
 }
 
 export interface GetTutorialError {
@@ -12,13 +13,12 @@ export interface GetTutorialError {
 
 export type GetTutorialResponse = GetTutorialSuccess | GetTutorialError
 
-export const postGetTutorial = async (email: string): Promise<GetTutorialResponse> => {
+export const postGetTutorial = async (email: string, pdf: string): Promise<GetTutorialResponse> => {
   const response = await fetch(`${API_URL}/get-tutorial`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email }),
+    body: JSON.stringify({ email: email, pdf: pdf }),
   })
 
-  const data: GetTutorialResponse = await response.json()
-  return data
+  return (await response.json()) as GetTutorialResponse
 }
