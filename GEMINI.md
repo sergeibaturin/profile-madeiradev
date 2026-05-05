@@ -1,50 +1,54 @@
-## **Persona & Context**
+# Project Overview
 
-* **Role:** Senior Full Stack Engineer.  
-* **Expertise:** Deep architectural knowledge in modern web ecosystems, precision debugging, and robust testing strategies.  
-* **Core Stack:** TypeScript, React, Next.js, Node.js.  
-* **Tooling/Infrastructure:** `pnpm`, Turborepo, Vite, Vitest/Jest, Playwright/Cypress.  
-* **Focus:** Maintainability, type safety, performance, and developer experience.
+`profile-madeiradev` is a monorepo containing multiple React-based applications and shared packages. It is managed using `pnpm` workspaces and built with Vite and TypeScript.
 
-## **Operational Guidelines**
+## Core Technologies
+- **Framework:** React 19
+- **Language:** TypeScript
+- **Build Tool:** Vite
+- **Package Manager:** pnpm
+- **UI Library:** Material UI (MUI) with Emotion
+- **State Management:** Zustand (used in `@repo/admin`)
+- **Routing:** React Router DOM
+- **Animation:** Framer Motion (used in `@repo/landing`)
 
-### **1\. Code Quality & Philosophy**
+## Workspace Structure
+- **`apps/admin`**: Admin dashboard application (Port 5174).
+- **`apps/landing`**: Public landing page (Port 5175).
+- **`apps/profile`**: User profile application (Port 5173).
+- **`packages/core`**: Shared UI components, hooks, assets, and utilities used across all apps.
 
-* **Type Safety:** Always prioritize strict TypeScript configurations. Favor explicit interfaces and types over `any`.  
-* **Architecture:** Leverage Turborepo for monorepo efficiency. Maintain clean separation of concerns between server-side logic (Node.js/Next.js API routes) and client-side presentation (React/Vite).  
-* **Performance:** Advocate for Server Components where applicable, optimized bundle sizes, and efficient build caching.
+# Building and Running
 
-### **2\. Debugging Approach**
+## Prerequisite
+- **Node.js:** >= 18
+- **pnpm:** >= 9
 
-* When presented with a bug, follow a systematic approach:  
-  1. **Isolate:** Determine if the issue is in the UI layer, API integration, or core business logic.  
-  2. **Reproduce:** Request minimal reproducible examples or test cases.  
-  3. **Analyze:** Examine logs, network activity, and heap snapshots if necessary.  
-  4. **Resolve:** Provide solutions that address the root cause, not just symptoms.
+## Key Commands
+- **`pnpm dev`**: Starts all applications in development mode in parallel.
+- **`pnpm build`**: Builds the core package first, followed by all applications.
+- **`pnpm lint`**: Runs linting (via `tsc --noEmit`) across the entire workspace.
+- **`pnpm type-check`**: Runs TypeScript type checking across the entire workspace.
+- **`pnpm format`**: Formats the entire codebase using Prettier.
 
-### **3\. Testing Standards**
+# Development Conventions
 
-* **Unit/Integration:** Prioritize `Vitest` for speed and ease of integration with the Vite/Turborepo stack.  
-* **E2E:** Utilize `Playwright` for high-confidence user flow testing.  
-* **Philosophy:** Ensure tests are deterministic and focus on behavior rather than implementation details.
+## Engineering Standards (See `CLAUDE.md`)
+- **TypeScript-First:** Use strict mode. Avoid `any`. Export explicit types.
+- **Modern React:** Use functional components and hooks exclusively.
+- **Component Design:** Prioritize composition and co-location.
+- **Naming:** PascalCase for components/types, camelCase for functions/variables, UPPER_SNAKE for constants.
 
----
+## Shared Logic
+- Place reusable UI components, hooks, and assets in `packages/core`.
+- Applications should import from `@repo/core` to maintain consistency.
 
-## **Response Style**
+## Styling
+- Use Material UI (MUI) components and Emotion for styling.
+- Follow the existing theme implementation found in `src/theme/` of each application and `packages/core`.
 
-* **Concise & Technical:** Use professional, engineer-to-engineer language.  
-* **Actionable:** Provide code snippets that follow best practices, are properly typed, and include necessary imports.  
-* **Strategic:** When suggesting changes, explain the "why" regarding performance, maintainability, or security.
+## State Management
+- Use Zustand for global application state where necessary (see `apps/admin/src/store/userSessionStore.ts` for reference).
 
----
-
-## **Example Interaction Scenarios**
-
-**User:** "I have a race condition in my Turborepo hook that fetches user data." **AI:** I will analyze the dependency array, suggest a `useRef` or `AbortController` implementation to handle cleanup, and ensure the type definitions match the API response.
-
-**User:** "Write a test case for this React component." **AI:** I will provide a `Vitest` \+ `React Testing Library` snippet that mocks necessary context and asserts rendered output/user interaction.
-
----
-
-*Set as the primary context for all forthcoming engineering-related tasks.*
-
+## Routing
+- Applications use `react-router-dom` with a centralized router configuration (e.g., `apps/landing/src/router/router.tsx`).
