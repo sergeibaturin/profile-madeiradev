@@ -1,220 +1,365 @@
-import { Box, Button, Container, Paper, Typography } from '@mui/material'
+import { Box, Button, Container, Paper, Typography, useTheme, useMediaQuery } from '@mui/material'
 import { HeroLogoIcon } from '@repo/core'
+import { motion } from 'framer-motion'
 
-export const Home = () => {
+const BackgroundAnimation = () => {
   return (
-    <Container
-      maxWidth="xl"
+    <Box
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        minHeight: 'calc(100vh - 4.5rem)',
-        pt: 4,
-        pb: 8,
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        overflow: 'hidden',
+        zIndex: -1,
+        pointerEvents: 'none',
+        background: '#121212',
       }}
-      disableGutters
     >
+      {/* Grid Pattern */}
       <Box
-        component="img"
-        src={HeroLogoIcon}
-        alt=""
         sx={{
-          mt: 2,
-          mb: 4,
-          width: '300px',
-          '@media (max-width:600px)': { width: '200px' },
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundImage: `linear-gradient(rgba(56, 187, 234, 0.03) 1px, transparent 1px), 
+                           linear-gradient(90deg, rgba(56, 187, 234, 0.03) 1px, transparent 1px)`,
+          backgroundSize: '50px 50px',
         }}
       />
-      {/* Page Header */}
-      <Typography
-        sx={{
-          fontFamily: 'Roboto',
-          fontSize: 'clamp(2rem, 4vw, 3.5rem)',
-          fontWeight: 900,
-          textAlign: 'center',
-        }}
-      >
-        Your Fractional CTO
-        <br />
-        Zero Overhead, Total Ownership
-      </Typography>
 
-      <Typography
-        sx={{
-          fontFamily: 'JetBrains Mono',
-          fontSize: 'clamp(1rem, 1.7vw, 1.25rem)',
-          color: '#38bbea',
-          mb: 6,
-          textAlign: 'center',
-        }}
-      >
-        100% IP Ownership. No Vendor Lock-in
-      </Typography>
-
-      <Box sx={{ mb: 0 }}>
-        <Typography
-          sx={{
-            fontFamily: 'JetBrains Mono',
-            fontSize: 'clamp(1rem, 1.7vw, 1.25rem)',
-            color: '#e34d4d',
-            mb: 2,
-            textAlign: 'left',
+      {[...Array(300)].map((_, i) => (
+        <motion.div
+          key={i}
+          initial={{
+            opacity: Math.random() * 0.4 + 0.1,
+            x: Math.random() * 100 + 'vw',
+            y: Math.random() * 100 + 'vh',
+            scale: Math.random() * 0.5 + 0.5,
           }}
-        >
-          Your Pains
-        </Typography>
-        <Typography
-          sx={{
-            fontFamily: 'JetBrains Mono',
-            fontSize: 'clamp(1rem, 1.7vw, 1.25rem)',
-            color: '#ffffff',
-            mb: 6,
-            textAlign: 'center',
+          animate={{
+            x: [Math.random() * 100 + 'vw', Math.random() * 100 + 'vw', Math.random() * 100 + 'vw'],
+            y: [Math.random() * 100 + 'vh', Math.random() * 100 + 'vh', Math.random() * 100 + 'vh'],
+            opacity: [0.1, 0.5, 0.1],
           }}
-        >
-          Babysitting "cheap" freelancers who write spaghetti code?
-          <br />
-          Infrastructure that crashes at the first 1,000 users?
-          <br />
-          Losing your IP to a black-box agency?
-        </Typography>
-
-        <Typography
-          sx={{
-            fontFamily: 'JetBrains Mono',
-            fontSize: 'clamp(1rem, 1.7vw, 1.25rem)',
-            color: '#38bbea',
-            mb: 2,
-            textAlign: 'left',
+          transition={{
+            duration: Math.random() * 30 + 20,
+            repeat: Infinity,
+            ease: 'linear',
           }}
-        >
-          Solution
-        </Typography>
-        <Typography
-          sx={{
-            fontFamily: 'JetBrains Mono',
-            fontSize: 'clamp(1rem, 1.7vw, 1.25rem)',
-            color: '#ffffff',
-            mb: 6,
-            textAlign: 'center',
+          style={{
+            position: 'absolute',
+            width: Math.random() * 3 + 1 + 'px',
+            height: Math.random() * 3 + 1 + 'px',
+            borderRadius: '50%',
+            backgroundColor: i % 3 === 0 ? '#38bbea' : '#ffffff',
+            boxShadow: i % 3 === 0 ? '0 0 15px #38bbea' : '0 0 10px #ffffff',
           }}
-        >
-          A production-grade MVP built directly in your cloud.
-          <br />
-          We provide the architecture, the CI/CD, and the clean code
-          <br />
-          you need to scale to 10k users on day one.
-        </Typography>
-      </Box>
-
-      {/* Pricing */}
+        />
+      ))}
       <Box
         sx={{
-          width: '100%',
-          mt: 8,
-          mb: 8,
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background:
+            'radial-gradient(circle at 50% 50%, rgba(18, 18, 18, 0.2) 0%, rgba(18, 18, 18, 0.9) 100%)',
+        }}
+      />
+    </Box>
+  )
+}
+
+export const Home = () => {
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
+
+  return (
+    <Box sx={{ position: 'relative', width: '100%', minHeight: '100%', overflow: 'visible' }}>
+      <BackgroundAnimation />
+
+      <Container
+        maxWidth="xl"
+        sx={{
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+          justifyContent: 'center',
+          minHeight: 'calc(100vh - 200px)', // Adjust for header/footer
+          py: { xs: 8, md: 12 },
         }}
+        disableGutters
       >
-        {/*<Typography*/}
-        {/*  sx={{*/}
-        {/*    fontFamily: 'JetBrains Mono',*/}
-        {/*    fontSize: 'clamp(1.5rem, 2.5vw, 2rem)',*/}
-        {/*    color: '#bebebe',*/}
-        {/*    mb: 4,*/}
-        {/*    textAlign: 'center',*/}
-        {/*  }}*/}
-        {/*>*/}
-        {/*  Pricing*/}
-        {/*</Typography>*/}
-        <Paper
-          elevation={4}
-          sx={{
-            width: '100%',
-            maxWidth: '600px',
-            backgroundColor: '#1e1e1e',
-            border: '1px solid #2a2a2a',
-            borderRadius: 3,
-            p: 4,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: 2,
-          }}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, ease: 'easeOut' }}
+          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}
         >
+          <Box
+            component="img"
+            src={HeroLogoIcon}
+            alt="Madeira Dev Logo"
+            sx={{
+              mb: 6,
+              width: '240px',
+              filter: 'drop-shadow(0 0 30px rgba(56, 187, 234, 0.4))',
+              '@media (max-width:600px)': { width: '160px' },
+            }}
+          />
+
           <Typography
             sx={{
               fontFamily: 'Roboto',
-              fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
+              fontSize: 'clamp(2.5rem, 6vw, 5rem)',
               fontWeight: 900,
-              color: '#ffffff',
-              lineHeight: 1,
+              textAlign: 'center',
+              lineHeight: 1.05,
+              mb: 3,
+              letterSpacing: '-0.03em',
+              background: 'linear-gradient(180deg, #FFFFFF 30%, #38bbea 150%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              textTransform: 'uppercase',
             }}
           >
-            $5,999
-            <Typography
-              component="span"
-              sx={{
-                fontFamily: 'JetBrains Mono',
-                fontSize: 'clamp(1rem, 1.5vw, 1.25rem)',
-                color: '#bebebe',
-                fontWeight: 400,
-                ml: 1,
-              }}
-            >
-              / mo
-            </Typography>
+            Your Fractional CTO
+            <br />
+            Zero Overhead, Total Ownership
           </Typography>
 
           <Typography
             sx={{
               fontFamily: 'JetBrains Mono',
-              fontSize: 'clamp(0.8rem, 1.2vw, 0.95rem)',
-              color: '#bebebe',
+              fontSize: 'clamp(1rem, 2vw, 1.4rem)',
+              color: '#38bbea',
+              mb: 6,
               textAlign: 'center',
-              lineHeight: 2,
+              fontWeight: 400,
+              maxWidth: '850px',
+              px: 2,
+              letterSpacing: '0.05em',
             }}
           >
-            Full codebase audit on day one
-            <br />
-            Up to 40 hrs/mo · unlimited bug fixes & production support
-            <br />
-            CI/CD setup · security monitoring · weekly strategy call
-            <br />
-            <Typography
-              component="span"
-              sx={{ fontFamily: 'JetBrains Mono', fontSize: 'inherit', color: '#38bbea' }}
-            >
-              Pause or cancel anytime
-            </Typography>
+            We bridge the gap between AI-generated prototypes and production-ready products.
           </Typography>
 
-          <Button
-            component="a"
-            // href="https://profile.madeiradev.com"
-            href="https://calendar.app.google/3P5PXptTcdtggiqb7"
-            target="_blank"
-            variant="contained"
-            size="large"
+          <Box
             sx={{
-              mt: 1,
-              backgroundColor: '#38bbea',
-              color: '#121212',
-              fontFamily: 'JetBrains Mono',
-              fontWeight: 700,
-              fontSize: '1rem',
-              borderRadius: 2,
-              px: 5,
-              '&:hover': { backgroundColor: '#2aa8d4' },
+              display: 'flex',
+              flexDirection: isMobile ? 'column' : 'row',
+              gap: 3,
+              width: '100%',
+              maxWidth: '1200px',
+              mb: 10,
+              px: 3,
             }}
           >
-            BOOK A CALL
-          </Button>
-        </Paper>
-      </Box>
-    </Container>
+            <Paper
+              elevation={0}
+              sx={{
+                flex: 1,
+                p: { xs: 4, md: 5 },
+                backgroundColor: 'rgba(25, 25, 25, 0.4)',
+                backdropFilter: 'blur(20px)',
+                border: '1px solid rgba(255, 255, 255, 0.03)',
+                borderRadius: 6,
+                transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                '&:hover': {
+                  transform: 'translateY(-10px)',
+                  borderColor: 'rgba(56, 187, 234, 0.4)',
+                  backgroundColor: 'rgba(56, 187, 234, 0.05)',
+                  boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
+                },
+              }}
+            >
+              <Typography
+                sx={{
+                  color: '#e34d4d',
+                  mb: 3,
+                  fontFamily: 'JetBrains Mono',
+                  fontWeight: 800,
+                  fontSize: '0.9rem',
+                  letterSpacing: '0.1em',
+                }}
+              >
+                [ THE CHALLENGE ]
+              </Typography>
+              <Typography
+                sx={{ color: '#bebebe', lineHeight: 1.8, fontSize: '1.1rem', fontWeight: 300 }}
+              >
+                Stop "vibe-coding" and start scaling. We take full ownership of your security,
+                infrastructure, and code quality. Get senior technical leadership to harden your
+                stack, optimize your costs, and ship professional features—without the $200k salary.
+              </Typography>
+            </Paper>
+
+            <Paper
+              elevation={0}
+              sx={{
+                flex: 1,
+                p: { xs: 4, md: 5 },
+                backgroundColor: 'rgba(25, 25, 25, 0.4)',
+                backdropFilter: 'blur(20px)',
+                border: '1px solid rgba(255, 255, 255, 0.03)',
+                borderRadius: 6,
+                transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                '&:hover': {
+                  transform: 'translateY(-10px)',
+                  borderColor: 'rgba(56, 187, 234, 0.4)',
+                  backgroundColor: 'rgba(56, 187, 234, 0.05)',
+                  boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
+                },
+              }}
+            >
+              <Typography
+                sx={{
+                  color: '#38bbea',
+                  mb: 3,
+                  fontFamily: 'JetBrains Mono',
+                  fontWeight: 800,
+                  fontSize: '0.9rem',
+                  letterSpacing: '0.1em',
+                }}
+              >
+                [ THE SOLUTION ]
+              </Typography>
+              <Typography
+                sx={{ color: '#bebebe', lineHeight: 1.8, fontSize: '1.1rem', fontWeight: 300 }}
+              >
+                We act as your technical co-founder on demand. From hardening your database to
+                setting up automated pipelines, we clean up the "AI mess" and ensure your app is
+                enterprise-grade. Total technical ownership so you can focus 100% on marketing and
+                growth.
+              </Typography>
+            </Paper>
+          </Box>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
+          >
+            <Paper
+              elevation={0}
+              sx={{
+                width: '100%',
+                maxWidth: '700px',
+                backgroundColor: 'rgba(15, 15, 15, 0.9)',
+                backdropFilter: 'blur(30px)',
+                border: '2px solid #38bbea22',
+                borderRadius: 8,
+                p: { xs: 5, md: 7 },
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: 4,
+                boxShadow: '0 30px 60px rgba(0,0,0,0.5), inset 0 0 40px rgba(56, 187, 234, 0.05)',
+              }}
+            >
+              <Typography
+                sx={{
+                  fontFamily: 'Roboto',
+                  fontSize: 'clamp(3.5rem, 8vw, 5rem)',
+                  fontWeight: 900,
+                  color: '#ffffff',
+                  lineHeight: 1,
+                  display: 'flex',
+                  alignItems: 'baseline',
+                }}
+              >
+                $5,999
+                <Typography
+                  component="span"
+                  sx={{
+                    fontFamily: 'JetBrains Mono',
+                    fontSize: '1.5rem',
+                    color: '#38bbea',
+                    fontWeight: 500,
+                    ml: 2,
+                  }}
+                >
+                  / month
+                </Typography>
+              </Typography>
+
+              <Box
+                sx={{
+                  width: '100%',
+                  height: '2px',
+                  background: 'linear-gradient(90deg, transparent, #38bbea44, transparent)',
+                }}
+              />
+
+              <Typography
+                sx={{
+                  fontFamily: 'JetBrains Mono',
+                  fontSize: '1.05rem',
+                  color: '#bebebe',
+                  textAlign: 'center',
+                  lineHeight: 2.4,
+                  fontWeight: 300,
+                }}
+              >
+                • Full codebase audit on day one
+                <br />
+                • Up to 40 hrs/mo · unlimited bug fixes
+                <br />
+                • CI/CD setup · security monitoring
+                <br />
+                • Weekly strategy call · production support
+                <br />
+                <Typography
+                  component="span"
+                  sx={{
+                    color: '#38bbea',
+                    fontWeight: 800,
+                    fontSize: '1.1rem',
+                    mt: 1,
+                    display: 'inline-block',
+                  }}
+                >
+                  PAUSE OR CANCEL ANYTIME
+                </Typography>
+              </Typography>
+
+              <Button
+                component="a"
+                href="https://calendar.app.google/3P5PXptTcdtggiqb7"
+                target="_blank"
+                variant="contained"
+                size="large"
+                sx={{
+                  mt: 2,
+                  backgroundColor: '#38bbea',
+                  color: '#000000',
+                  fontFamily: 'JetBrains Mono',
+                  fontWeight: 900,
+                  fontSize: '1.2rem',
+                  borderRadius: 3,
+                  px: 8,
+                  py: 2,
+                  boxShadow: '0 0 30px rgba(56, 187, 234, 0.4)',
+                  transition: 'all 0.3s ease',
+                  '&:hover': {
+                    backgroundColor: '#ffffff',
+                    boxShadow: '0 0 50px rgba(255, 255, 255, 0.6)',
+                    transform: 'scale(1.05)',
+                  },
+                }}
+              >
+                BOOK A STRATEGY CALL
+              </Button>
+            </Paper>
+          </motion.div>
+        </motion.div>
+      </Container>
+    </Box>
   )
 }
