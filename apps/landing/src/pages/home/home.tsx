@@ -135,7 +135,8 @@ export const Home = () => {
               letterSpacing: '0.05em',
             }}
           >
-            We bridge the gap between AI-generated prototypes and production-ready products.
+            Expert Troubleshooting for Startups, SaaS Products & Applications.
+            {/*We bridge the gap between prototypes and production-ready products.*/}
           </Typography>
 
           <Box
@@ -177,14 +178,15 @@ export const Home = () => {
                   letterSpacing: '0.1em',
                 }}
               >
-                [ THE CHALLENGE ]
+                [ FROM CHAOS TO CODE ]
               </Typography>
               <Typography
                 sx={{ color: '#bebebe', lineHeight: 1.8, fontSize: '1.1rem', fontWeight: 300 }}
               >
                 Stop "vibe-coding" and start scaling. We take full ownership of your security,
                 infrastructure, and code quality. Get senior technical leadership to harden your
-                stack, optimize your costs, and ship professional features—without the $200k salary.
+                stack, optimize your costs, and ship production-ready features — without the $200k
+                salary.
               </Typography>
             </Paper>
 
@@ -216,7 +218,7 @@ export const Home = () => {
                   letterSpacing: '0.1em',
                 }}
               >
-                [ THE SOLUTION ]
+                [ THE OPERATING MODEL ]
               </Typography>
               <Typography
                 sx={{ color: '#bebebe', lineHeight: 1.8, fontSize: '1.1rem', fontWeight: 300 }}
