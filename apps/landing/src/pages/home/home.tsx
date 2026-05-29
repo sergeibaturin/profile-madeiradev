@@ -1,4 +1,4 @@
-import { Box, Button, Container, Paper, Typography, useTheme, useMediaQuery } from '@mui/material'
+import { Box, Button, Container, Paper, Typography, useTheme, useMediaQuery, List, ListItem } from '@mui/material'
 import { HeroLogoIcon } from '@repo/core'
 import { motion } from 'framer-motion'
 
@@ -105,16 +105,16 @@ export const Home = () => {
           <Typography
             sx={{
               fontFamily: 'Roboto',
-              fontSize: 'clamp(2.5rem, 6vw, 5rem)',
+              fontSize: 'clamp(2rem, 6vw, 5rem)',
               fontWeight: 900,
               textAlign: 'center',
               lineHeight: 1.05,
               mb: 3,
-              letterSpacing: '-0.03em',
-              background: 'linear-gradient(180deg, #FFFFFF 30%, #38bbea 150%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              textTransform: 'uppercase',
+              letterSpacing: '1px',
+              // background: 'linear-gradient(180deg, #FFFFFF 30%, #38bbea 150%)',
+              // WebkitBackgroundClip: 'text',
+              // WebkitTextFillColor: 'transparent',
+              // textTransform: 'uppercase',
             }}
           >
             Your Fractional CTO
@@ -128,14 +128,18 @@ export const Home = () => {
               fontSize: 'clamp(1rem, 2vw, 1.4rem)',
               color: '#38bbea',
               mb: 6,
+              p: 2,
+              borderRadius: 2,
               textAlign: 'center',
-              fontWeight: 400,
+              fontWeight: 'bold',
               maxWidth: '850px',
               px: 2,
               letterSpacing: '0.05em',
+              backgroundColor: 'rgba(56, 187, 234, 0.1)',
             }}
+
           >
-            Expert Troubleshooting for Startups, SaaS Products & Applications.
+            Expert Troubleshooting for Startups, SaaS Products & Applications
             {/*We bridge the gap between prototypes and production-ready products.*/}
           </Typography>
 
@@ -147,7 +151,7 @@ export const Home = () => {
               width: '100%',
               maxWidth: '1200px',
               mb: 10,
-              px: 3,
+              // px: 3,
             }}
           >
             <Paper
@@ -228,6 +232,52 @@ export const Home = () => {
                 enterprise-grade. Total technical ownership so you can focus 100% on marketing and
                 growth.
               </Typography>
+            </Paper>
+          </Box>
+
+          <Box sx={{
+            display: 'flex',
+            flexDirection: isMobile ? 'column' : 'row',
+            gap: 3,
+            width: '100%',
+            maxWidth: '1200px',
+            mb: 10,
+            // px: 3,
+          }}>
+            <Paper elevation={0}
+              sx={{
+                flex: 1,
+                p: { xs: 4, md: 5 },
+                backgroundColor: 'rgba(25, 25, 25, 0.4)',
+                backdropFilter: 'blur(20px)',
+                border: '1px solid rgba(255, 255, 255, 0.03)',
+                borderRadius: 6,
+                transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                '&:hover': {
+                  transform: 'translateY(-10px)',
+                  borderColor: 'rgba(56, 187, 234, 0.4)',
+                  backgroundColor: 'rgba(56, 187, 234, 0.05)',
+                  boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
+                },
+              }}>
+              <Typography sx={{
+                color: '#bdff8f',
+                mb: 3,
+                fontFamily: 'JetBrains Mono',
+                fontWeight: 800,
+                fontSize: '1.4rem',
+                letterSpacing: '0.1em',
+              }}>
+                [ HOW WE WORK ]
+              </Typography>
+
+              <List sx={{
+                listStyle: 'inside',
+                listStyleType: 'decimal',
+              }}>
+                <ListItem sx={{ display: 'list-item' }}>Hello</ListItem>
+              </List>
+
             </Paper>
           </Box>
 
@@ -351,6 +401,6 @@ export const Home = () => {
           </motion.div>
         </motion.div>
       </Container>
-    </Box>
+    </Box >
   )
 }

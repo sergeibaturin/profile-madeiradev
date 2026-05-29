@@ -1,7 +1,7 @@
 import { Box, Container, Typography, Chip, Link } from '@mui/material'
 import { FaLinkedin, FaYoutube } from 'react-icons/fa6'
-import { useScrollIndicatorHook } from '@repo/core'
-import { ScrollIndicator } from '@repo/core'
+// import { useScrollIndicatorHook } from '@repo/core'
+import { /*ScrollIndicator,*/ AboutImage } from '@repo/core'
 
 const techList = [
   'mobile / Flutter',
@@ -14,7 +14,7 @@ const techList = [
 ]
 
 export const About = () => {
-  const isBottom = useScrollIndicatorHook()
+  // const isBottom = useScrollIndicatorHook()
   return (
     <Container
       sx={{
@@ -131,7 +131,17 @@ export const About = () => {
             </Link>
           </Box>
         </Box>
-        <Box
+        <Box sx={{
+          width: '50%',
+          height: '450px',
+          '@media (max-width:600px)': {
+            width: '100%',
+            height: '250px',
+          },
+        }}>
+          <img src={AboutImage} alt="About Image" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+        </Box>
+        {/* <Box
           sx={{
             width: '50%',
             height: '450px',
@@ -153,9 +163,9 @@ export const About = () => {
               borderRadius: '12px',
             }}
           />
-        </Box>
+        </Box> */}
       </Box>
-      {!isBottom && <ScrollIndicator />}
+      {/* {!isBottom && <ScrollIndicator />} */}
     </Container>
   )
 }
