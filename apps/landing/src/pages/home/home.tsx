@@ -1,6 +1,7 @@
 import { Box, Button, Container, Paper, Typography, useTheme, useMediaQuery, List, ListItem } from '@mui/material'
 import { HeroLogoIcon } from '@repo/core'
 import { motion } from 'framer-motion'
+import { text } from './text'
 
 const BackgroundAnimation = () => {
   return (
@@ -268,14 +269,27 @@ export const Home = () => {
                 fontSize: '1.4rem',
                 letterSpacing: '0.1em',
               }}>
-                [ HOW WE WORK ]
+                {text.sectionTitle}
+              </Typography>
+              <Typography sx={{ color: '#bebebe', lineHeight: 1.8, fontSize: '1.1rem', fontWeight: 300 }}>
+                {text.billingNote}
               </Typography>
 
+
               <List sx={{
-                listStyle: 'inside',
-                listStyleType: 'decimal',
+                listStyle: 'outside',
+                listStyleType: 'disc',
               }}>
-                <ListItem sx={{ display: 'list-item' }}>Hello</ListItem>
+                {text.steps.map(step => (
+                  <ListItem key={step.id} sx={{ display: 'list-item', mb: 2, pl: 0 }}>
+                    <Typography sx={{ color: '#38bbea', fontWeight: 600, fontSize: '1.05rem' }}>
+                      {step.title}
+                    </Typography>
+                    <Typography sx={{ color: '#bebebe', lineHeight: 1.6, fontSize: '1rem', fontWeight: 300, mt: 0.5 }}>
+                      {step.description}
+                    </Typography>
+                  </ListItem>
+                ))}
               </List>
 
             </Paper>

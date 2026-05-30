@@ -132,14 +132,18 @@ export const About = () => {
           </Box>
         </Box>
         <Box sx={{
+          display: 'flex',
+          alignItems: 'end',
           width: '50%',
           height: '450px',
           '@media (max-width:600px)': {
+            justifyContent: 'center',
+            mb: 4,
             width: '100%',
             height: '250px',
           },
         }}>
-          <img src={AboutImage} alt="About Image" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+          <img src={AboutImage} alt="About Image" style={{ width: 'auto', height: '150%', objectFit: 'contain' }} />
         </Box>
         {/* <Box
           sx={{
