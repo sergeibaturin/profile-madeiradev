@@ -74,12 +74,12 @@ export const Home = () => {
     <Box>
       <Bgr
         overlayColor="#000000cc"
-        overlayOpacity={0.7}
+        overlayOpacity={0}
         showDots
         dotColor="rgba(0, 0, 0, 1)"
         dotSize={3}
         dotGap={6}
-        blur={10}
+        blur={0}
       >
 
         <Container
@@ -112,8 +112,8 @@ export const Home = () => {
               alt="Madeira Dev Logo"
               sx={{
                 mt: -30,
-                mb: 20,
-                width: '400px',
+                mb: 10,
+                width: '250px',
                 filter: 'drop-shadow(0 0 30px rgba(56, 187, 234, 0.4))',
                 '@media (max-width:600px)': { width: '160px' },
               }}
@@ -123,20 +123,24 @@ export const Home = () => {
               sx={{
                 fontFamily: 'Roboto',
                 fontSize: 'clamp(2rem, 6vw, 5rem)',
-                fontWeight: 'bold',
+                // fontFamily: 'JetBrains Mono',
+                // fontSize: 'clamp(1rem, 1.7vw, 3rem)',
+                fontWeight: 900,
+                // fontWeight: 'bold',
                 textAlign: 'center',
                 lineHeight: 1.05,
-                mb: 10,
+                mb: 5,
                 letterSpacing: '1px',
                 // background: 'linear-gradient(180deg, #FFFFFF 30%, #38bbea 150%)',
                 // WebkitBackgroundClip: 'text',
                 // WebkitTextFillColor: 'transparent',
                 textTransform: 'uppercase',
+                // transform: 'scale(2.5)',
               }}
             >
               Your Fractional CTO
-              <br />
-              Zero Overhead, Total Ownership
+              {/* <br /> */}
+              {/* Zero Overhead, Total Ownership */}
             </Typography>
 
             <Typography
@@ -160,7 +164,33 @@ export const Home = () => {
               {/*We bridge the gap between prototypes and production-ready products.*/}
             </Typography>
           </motion.div>
+          <Button
+            component="a"
+            href="https://calendar.app.google/3P5PXptTcdtggiqb7"
+            target="_blank"
+            variant="contained"
+            size="large"
+            sx={{
 
+              backgroundColor: '#38bbea',
+              color: '#000000',
+              fontFamily: 'JetBrains Mono',
+              fontWeight: 900,
+              fontSize: '1.2rem',
+              borderRadius: 3,
+              px: 8,
+              py: 2,
+              boxShadow: '0 0 30px rgba(56, 187, 234, 0.4)',
+              transition: 'all 0.3s ease',
+              '&:hover': {
+                backgroundColor: '#ffffff',
+                boxShadow: '0 0 50px rgba(255, 255, 255, 0.6)',
+                transform: 'scale(1.05)',
+              },
+            }}
+          >
+            BOOK A STRATEGY CALL
+          </Button>
         </Box>
       </Bgr>
       <Box sx={{ position: 'relative', width: '100%', minHeight: '100%', overflow: 'visible' }}>
