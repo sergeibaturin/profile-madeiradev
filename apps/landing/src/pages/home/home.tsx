@@ -1,7 +1,8 @@
 import { Box, Button, Container, Paper, Typography, useTheme, useMediaQuery, List, ListItem } from '@mui/material'
-import { HeroLogoIcon } from '@repo/core'
+import { Bgr, HeroLogoIcon } from '@repo/core'
 import { motion } from 'framer-motion'
 import { text } from './text'
+import { Header } from '../../components/header/header'
 
 const BackgroundAnimation = () => {
   return (
@@ -70,82 +71,212 @@ export const Home = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'))
 
   return (
-    <Box sx={{ position: 'relative', width: '100%', minHeight: '100%', overflow: 'visible' }}>
-      <BackgroundAnimation />
+    <Box>
+      <Bgr
+        overlayColor="#000000cc"
+        overlayOpacity={0.7}
+        showDots
+        dotColor="rgba(0, 0, 0, 1)"
+        dotSize={3}
+        dotGap={6}
+        blur={10}
+      >
 
-      <Container
-        maxWidth="xl"
-        sx={{
+        <Container
+          sx={{
+            mt: 4,
+            mb: 4,
+            width: '90%',
+          }}
+          disableGutters
+        >
+          <Header />
+        </Container>
+        <Box sx={{
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          minHeight: 'calc(100vh - 200px)', // Adjust for header/footer
-          py: { xs: 8, md: 12 },
-        }}
-        disableGutters
-      >
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, ease: 'easeOut' }}
-          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}
+          width: '100%',
+          minHeight: '100vh',
+        }}>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, ease: 'easeOut' }}
+            style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}
+          >
+            <Box
+              component="img"
+              src={HeroLogoIcon}
+              alt="Madeira Dev Logo"
+              sx={{
+                mt: -30,
+                mb: 20,
+                width: '400px',
+                filter: 'drop-shadow(0 0 30px rgba(56, 187, 234, 0.4))',
+                '@media (max-width:600px)': { width: '160px' },
+              }}
+            />
+
+            <Typography
+              sx={{
+                fontFamily: 'Roboto',
+                fontSize: 'clamp(2rem, 6vw, 5rem)',
+                fontWeight: 'bold',
+                textAlign: 'center',
+                lineHeight: 1.05,
+                mb: 10,
+                letterSpacing: '1px',
+                // background: 'linear-gradient(180deg, #FFFFFF 30%, #38bbea 150%)',
+                // WebkitBackgroundClip: 'text',
+                // WebkitTextFillColor: 'transparent',
+                textTransform: 'uppercase',
+              }}
+            >
+              Your Fractional CTO
+              <br />
+              Zero Overhead, Total Ownership
+            </Typography>
+
+            <Typography
+              sx={{
+                fontFamily: 'JetBrains Mono',
+                fontSize: 'clamp(1rem, 2vw, 1.4rem)',
+                color: '#38bbea',
+                mb: 6,
+                p: 2,
+                borderRadius: 2,
+                textAlign: 'center',
+                fontWeight: 'bold',
+                maxWidth: '850px',
+                px: 2,
+                letterSpacing: '0.05em',
+                backgroundColor: 'rgba(56, 187, 234, 0.1)',
+              }}
+
+            >
+              Expert Troubleshooting for Startups, SaaS Products & Applications
+              {/*We bridge the gap between prototypes and production-ready products.*/}
+            </Typography>
+          </motion.div>
+
+        </Box>
+      </Bgr>
+      <Box sx={{ position: 'relative', width: '100%', minHeight: '100%', overflow: 'visible' }}>
+        <BackgroundAnimation />
+
+        <Container
+          // maxWidth="xl"
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            minHeight: 'calc(100vh - 200px)',
+            py: { xs: 8, md: 12 },
+          }}
+          disableGutters
         >
-          <Box
-            component="img"
-            src={HeroLogoIcon}
-            alt="Madeira Dev Logo"
-            sx={{
-              mb: 6,
-              width: '240px',
-              filter: 'drop-shadow(0 0 30px rgba(56, 187, 234, 0.4))',
-              '@media (max-width:600px)': { width: '160px' },
-            }}
-          />
-
-          <Typography
-            sx={{
-              fontFamily: 'Roboto',
-              fontSize: 'clamp(2rem, 6vw, 5rem)',
-              fontWeight: 900,
-              textAlign: 'center',
-              lineHeight: 1.05,
-              mb: 3,
-              letterSpacing: '1px',
-              // background: 'linear-gradient(180deg, #FFFFFF 30%, #38bbea 150%)',
-              // WebkitBackgroundClip: 'text',
-              // WebkitTextFillColor: 'transparent',
-              // textTransform: 'uppercase',
-            }}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, ease: 'easeOut' }}
+            style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}
           >
-            Your Fractional CTO
-            <br />
-            Zero Overhead, Total Ownership
-          </Typography>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: isMobile ? 'column' : 'row',
+                gap: 3,
+                width: '100%',
+                maxWidth: '1200px',
+                mb: 10,
+                // px: 3,
+              }}
+            >
+              <Paper
+                elevation={0}
+                sx={{
+                  flex: 1,
+                  p: { xs: 4, md: 5 },
+                  backgroundColor: 'rgba(25, 25, 25, 0.4)',
+                  backdropFilter: 'blur(20px)',
+                  border: '1px solid rgba(255, 255, 255, 0.03)',
+                  borderRadius: 6,
+                  transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                  '&:hover': {
+                    transform: 'translateY(-10px)',
+                    borderColor: 'rgba(56, 187, 234, 0.4)',
+                    backgroundColor: 'rgba(56, 187, 234, 0.05)',
+                    boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
+                  },
+                }}
+              >
+                <Typography
+                  sx={{
+                    color: '#e34d4d',
+                    mb: 3,
+                    fontFamily: 'JetBrains Mono',
+                    fontWeight: 800,
+                    fontSize: '0.9rem',
+                    letterSpacing: '0.1em',
+                  }}
+                >
+                  [ FROM CHAOS TO CODE ]
+                </Typography>
+                <Typography
+                  sx={{ color: '#bebebe', lineHeight: 1.8, fontSize: '1.1rem', fontWeight: 300 }}
+                >
+                  Stop "vibe-coding" and start scaling. We take full ownership of your security,
+                  infrastructure, and code quality. Get senior technical leadership to harden your
+                  stack, optimize your costs, and ship production-ready features — without the $200k
+                  salary.
+                </Typography>
+              </Paper>
 
-          <Typography
-            sx={{
-              fontFamily: 'JetBrains Mono',
-              fontSize: 'clamp(1rem, 2vw, 1.4rem)',
-              color: '#38bbea',
-              mb: 6,
-              p: 2,
-              borderRadius: 2,
-              textAlign: 'center',
-              fontWeight: 'bold',
-              maxWidth: '850px',
-              px: 2,
-              letterSpacing: '0.05em',
-              backgroundColor: 'rgba(56, 187, 234, 0.1)',
-            }}
+              <Paper
+                elevation={0}
+                sx={{
+                  flex: 1,
+                  p: { xs: 4, md: 5 },
+                  backgroundColor: 'rgba(25, 25, 25, 0.4)',
+                  backdropFilter: 'blur(20px)',
+                  border: '1px solid rgba(255, 255, 255, 0.03)',
+                  borderRadius: 6,
+                  transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                  '&:hover': {
+                    transform: 'translateY(-10px)',
+                    borderColor: 'rgba(56, 187, 234, 0.4)',
+                    backgroundColor: 'rgba(56, 187, 234, 0.05)',
+                    boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
+                  },
+                }}
+              >
+                <Typography
+                  sx={{
+                    color: '#38bbea',
+                    mb: 3,
+                    fontFamily: 'JetBrains Mono',
+                    fontWeight: 800,
+                    fontSize: '0.9rem',
+                    letterSpacing: '0.1em',
+                  }}
+                >
+                  [ THE OPERATING MODEL ]
+                </Typography>
+                <Typography
+                  sx={{ color: '#bebebe', lineHeight: 1.8, fontSize: '1.1rem', fontWeight: 300 }}
+                >
+                  We act as your technical co-founder on demand. From hardening your database to
+                  setting up automated pipelines, we clean up the "AI mess" and ensure your app is
+                  enterprise-grade. Total technical ownership so you can focus 100% on marketing and
+                  growth.
+                </Typography>
+              </Paper>
+            </Box>
 
-          >
-            Expert Troubleshooting for Startups, SaaS Products & Applications
-            {/*We bridge the gap between prototypes and production-ready products.*/}
-          </Typography>
-
-          <Box
-            sx={{
+            <Box sx={{
               display: 'flex',
               flexDirection: isMobile ? 'column' : 'row',
               gap: 3,
@@ -153,268 +284,178 @@ export const Home = () => {
               maxWidth: '1200px',
               mb: 10,
               // px: 3,
-            }}
-          >
-            <Paper
-              elevation={0}
-              sx={{
-                flex: 1,
-                p: { xs: 4, md: 5 },
-                backgroundColor: 'rgba(25, 25, 25, 0.4)',
-                backdropFilter: 'blur(20px)',
-                border: '1px solid rgba(255, 255, 255, 0.03)',
-                borderRadius: 6,
-                transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-                '&:hover': {
-                  transform: 'translateY(-10px)',
-                  borderColor: 'rgba(56, 187, 234, 0.4)',
-                  backgroundColor: 'rgba(56, 187, 234, 0.05)',
-                  boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
-                },
-              }}
-            >
-              <Typography
+            }}>
+              <Paper elevation={0}
                 sx={{
-                  color: '#e34d4d',
+                  flex: 1,
+                  p: { xs: 4, md: 5 },
+                  backgroundColor: 'rgba(25, 25, 25, 0.4)',
+                  backdropFilter: 'blur(20px)',
+                  border: '1px solid rgba(255, 255, 255, 0.03)',
+                  borderRadius: 6,
+                  transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                  '&:hover': {
+                    transform: 'translateY(-10px)',
+                    borderColor: 'rgba(56, 187, 234, 0.4)',
+                    backgroundColor: 'rgba(56, 187, 234, 0.05)',
+                    boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
+                  },
+                }}>
+                <Typography sx={{
+                  color: '#bdff8f',
                   mb: 3,
                   fontFamily: 'JetBrains Mono',
                   fontWeight: 800,
-                  fontSize: '0.9rem',
+                  fontSize: '1.4rem',
                   letterSpacing: '0.1em',
-                }}
-              >
-                [ FROM CHAOS TO CODE ]
-              </Typography>
-              <Typography
-                sx={{ color: '#bebebe', lineHeight: 1.8, fontSize: '1.1rem', fontWeight: 300 }}
-              >
-                Stop "vibe-coding" and start scaling. We take full ownership of your security,
-                infrastructure, and code quality. Get senior technical leadership to harden your
-                stack, optimize your costs, and ship production-ready features — without the $200k
-                salary.
-              </Typography>
-            </Paper>
-
-            <Paper
-              elevation={0}
-              sx={{
-                flex: 1,
-                p: { xs: 4, md: 5 },
-                backgroundColor: 'rgba(25, 25, 25, 0.4)',
-                backdropFilter: 'blur(20px)',
-                border: '1px solid rgba(255, 255, 255, 0.03)',
-                borderRadius: 6,
-                transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-                '&:hover': {
-                  transform: 'translateY(-10px)',
-                  borderColor: 'rgba(56, 187, 234, 0.4)',
-                  backgroundColor: 'rgba(56, 187, 234, 0.05)',
-                  boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
-                },
-              }}
-            >
-              <Typography
-                sx={{
-                  color: '#38bbea',
-                  mb: 3,
-                  fontFamily: 'JetBrains Mono',
-                  fontWeight: 800,
-                  fontSize: '0.9rem',
-                  letterSpacing: '0.1em',
-                }}
-              >
-                [ THE OPERATING MODEL ]
-              </Typography>
-              <Typography
-                sx={{ color: '#bebebe', lineHeight: 1.8, fontSize: '1.1rem', fontWeight: 300 }}
-              >
-                We act as your technical co-founder on demand. From hardening your database to
-                setting up automated pipelines, we clean up the "AI mess" and ensure your app is
-                enterprise-grade. Total technical ownership so you can focus 100% on marketing and
-                growth.
-              </Typography>
-            </Paper>
-          </Box>
-
-          <Box sx={{
-            display: 'flex',
-            flexDirection: isMobile ? 'column' : 'row',
-            gap: 3,
-            width: '100%',
-            maxWidth: '1200px',
-            mb: 10,
-            // px: 3,
-          }}>
-            <Paper elevation={0}
-              sx={{
-                flex: 1,
-                p: { xs: 4, md: 5 },
-                backgroundColor: 'rgba(25, 25, 25, 0.4)',
-                backdropFilter: 'blur(20px)',
-                border: '1px solid rgba(255, 255, 255, 0.03)',
-                borderRadius: 6,
-                transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-                '&:hover': {
-                  transform: 'translateY(-10px)',
-                  borderColor: 'rgba(56, 187, 234, 0.4)',
-                  backgroundColor: 'rgba(56, 187, 234, 0.05)',
-                  boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
-                },
-              }}>
-              <Typography sx={{
-                color: '#bdff8f',
-                mb: 3,
-                fontFamily: 'JetBrains Mono',
-                fontWeight: 800,
-                fontSize: '1.4rem',
-                letterSpacing: '0.1em',
-              }}>
-                {text.sectionTitle}
-              </Typography>
-              <Typography sx={{ color: '#bebebe', lineHeight: 1.8, fontSize: '1.1rem', fontWeight: 300 }}>
-                {text.billingNote}
-              </Typography>
-
-
-              <List sx={{
-                listStyle: 'outside',
-                listStyleType: 'disc',
-              }}>
-                {text.steps.map(step => (
-                  <ListItem key={step.id} sx={{ display: 'list-item', mb: 2, pl: 0 }}>
-                    <Typography sx={{ color: '#38bbea', fontWeight: 600, fontSize: '1.05rem' }}>
-                      {step.title}
-                    </Typography>
-                    <Typography sx={{ color: '#bebebe', lineHeight: 1.6, fontSize: '1rem', fontWeight: 300, mt: 0.5 }}>
-                      {step.description}
-                    </Typography>
-                  </ListItem>
-                ))}
-              </List>
-
-            </Paper>
-          </Box>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-            style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
-          >
-            <Paper
-              elevation={0}
-              sx={{
-                width: '100%',
-                maxWidth: '700px',
-                backgroundColor: 'rgba(15, 15, 15, 0.9)',
-                backdropFilter: 'blur(30px)',
-                border: '2px solid #38bbea22',
-                borderRadius: 8,
-                p: { xs: 5, md: 7 },
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: 4,
-                boxShadow: '0 30px 60px rgba(0,0,0,0.5), inset 0 0 40px rgba(56, 187, 234, 0.05)',
-              }}
-            >
-              <Typography
-                sx={{
-                  fontFamily: 'Roboto',
-                  fontSize: 'clamp(3.5rem, 8vw, 5rem)',
-                  fontWeight: 900,
-                  color: '#ffffff',
-                  lineHeight: 1,
-                  display: 'flex',
-                  alignItems: 'baseline',
-                }}
-              >
-                $5,999
-                <Typography
-                  component="span"
-                  sx={{
-                    fontFamily: 'JetBrains Mono',
-                    fontSize: '1.5rem',
-                    color: '#38bbea',
-                    fontWeight: 500,
-                    ml: 2,
-                  }}
-                >
-                  / month
+                }}>
+                  {text.sectionTitle}
                 </Typography>
-              </Typography>
+                <Typography sx={{ color: '#bebebe', lineHeight: 1.8, fontSize: '1.1rem', fontWeight: 300 }}>
+                  {text.billingNote}
+                </Typography>
 
-              <Box
+
+                <List sx={{
+                  listStyle: 'outside',
+                  listStyleType: 'disc',
+                }}>
+                  {text.steps.map(step => (
+                    <ListItem key={step.id} sx={{ display: 'list-item', mb: 2, pl: 0 }}>
+                      <Typography sx={{ color: '#38bbea', fontWeight: 600, fontSize: '1.05rem' }}>
+                        {step.title}
+                      </Typography>
+                      <Typography sx={{ color: '#bebebe', lineHeight: 1.6, fontSize: '1rem', fontWeight: 300, mt: 0.5 }}>
+                        {step.description}
+                      </Typography>
+                    </ListItem>
+                  ))}
+                </List>
+
+              </Paper>
+            </Box>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+              style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
+            >
+              <Paper
+                elevation={0}
                 sx={{
                   width: '100%',
-                  height: '2px',
-                  background: 'linear-gradient(90deg, transparent, #38bbea44, transparent)',
-                }}
-              />
-
-              <Typography
-                sx={{
-                  fontFamily: 'JetBrains Mono',
-                  fontSize: '1.05rem',
-                  color: '#bebebe',
-                  textAlign: 'center',
-                  lineHeight: 2.4,
-                  fontWeight: 300,
+                  maxWidth: '700px',
+                  backgroundColor: 'rgba(15, 15, 15, 0.9)',
+                  backdropFilter: 'blur(30px)',
+                  border: '2px solid #38bbea22',
+                  borderRadius: 8,
+                  p: { xs: 5, md: 7 },
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: 4,
+                  boxShadow: '0 30px 60px rgba(0,0,0,0.5), inset 0 0 40px rgba(56, 187, 234, 0.05)',
                 }}
               >
-                • Full codebase audit on day one
-                <br />
-                • Up to 40 hrs/mo · unlimited bug fixes
-                <br />
-                • CI/CD setup · security monitoring
-                <br />
-                • Weekly strategy call · production support
-                <br />
                 <Typography
-                  component="span"
                   sx={{
-                    color: '#38bbea',
-                    fontWeight: 800,
-                    fontSize: '1.1rem',
-                    mt: 1,
-                    display: 'inline-block',
+                    fontFamily: 'Roboto',
+                    fontSize: 'clamp(3.5rem, 8vw, 5rem)',
+                    fontWeight: 900,
+                    color: '#ffffff',
+                    lineHeight: 1,
+                    display: 'flex',
+                    alignItems: 'baseline',
                   }}
                 >
-                  PAUSE OR CANCEL ANYTIME
+                  $5,999
+                  <Typography
+                    component="span"
+                    sx={{
+                      fontFamily: 'JetBrains Mono',
+                      fontSize: '1.5rem',
+                      color: '#38bbea',
+                      fontWeight: 500,
+                      ml: 2,
+                    }}
+                  >
+                    / month
+                  </Typography>
                 </Typography>
-              </Typography>
 
-              <Button
-                component="a"
-                href="https://calendar.app.google/3P5PXptTcdtggiqb7"
-                target="_blank"
-                variant="contained"
-                size="large"
-                sx={{
-                  mt: 2,
-                  backgroundColor: '#38bbea',
-                  color: '#000000',
-                  fontFamily: 'JetBrains Mono',
-                  fontWeight: 900,
-                  fontSize: '1.2rem',
-                  borderRadius: 3,
-                  px: 8,
-                  py: 2,
-                  boxShadow: '0 0 30px rgba(56, 187, 234, 0.4)',
-                  transition: 'all 0.3s ease',
-                  '&:hover': {
-                    backgroundColor: '#ffffff',
-                    boxShadow: '0 0 50px rgba(255, 255, 255, 0.6)',
-                    transform: 'scale(1.05)',
-                  },
-                }}
-              >
-                BOOK A STRATEGY CALL
-              </Button>
-            </Paper>
+                <Box
+                  sx={{
+                    width: '100%',
+                    height: '2px',
+                    background: 'linear-gradient(90deg, transparent, #38bbea44, transparent)',
+                  }}
+                />
+
+                <Typography
+                  sx={{
+                    fontFamily: 'JetBrains Mono',
+                    fontSize: '1.05rem',
+                    color: '#bebebe',
+                    textAlign: 'center',
+                    lineHeight: 2.4,
+                    fontWeight: 300,
+                  }}
+                >
+                  • Full codebase audit on day one
+                  <br />
+                  • Up to 40 hrs/mo · unlimited bug fixes
+                  <br />
+                  • CI/CD setup · security monitoring
+                  <br />
+                  • Weekly strategy call · production support
+                  <br />
+                  <Typography
+                    component="span"
+                    sx={{
+                      color: '#38bbea',
+                      fontWeight: 800,
+                      fontSize: '1.1rem',
+                      mt: 1,
+                      display: 'inline-block',
+                    }}
+                  >
+                    PAUSE OR CANCEL ANYTIME
+                  </Typography>
+                </Typography>
+
+                <Button
+                  component="a"
+                  href="https://calendar.app.google/3P5PXptTcdtggiqb7"
+                  target="_blank"
+                  variant="contained"
+                  size="large"
+                  sx={{
+                    mt: 2,
+                    backgroundColor: '#38bbea',
+                    color: '#000000',
+                    fontFamily: 'JetBrains Mono',
+                    fontWeight: 900,
+                    fontSize: '1.2rem',
+                    borderRadius: 3,
+                    px: 8,
+                    py: 2,
+                    boxShadow: '0 0 30px rgba(56, 187, 234, 0.4)',
+                    transition: 'all 0.3s ease',
+                    '&:hover': {
+                      backgroundColor: '#ffffff',
+                      boxShadow: '0 0 50px rgba(255, 255, 255, 0.6)',
+                      transform: 'scale(1.05)',
+                    },
+                  }}
+                >
+                  BOOK A STRATEGY CALL
+                </Button>
+              </Paper>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      </Container>
-    </Box >
+        </Container>
+      </Box >
+    </Box>
   )
 }

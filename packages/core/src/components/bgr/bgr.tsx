@@ -10,6 +10,7 @@ interface BgrProps {
   dotSize?: number
   dotGap?: number
   children?: React.ReactNode
+  blur?: number
 }
 
 export const Bgr: React.FC<BgrProps> = ({
@@ -20,6 +21,7 @@ export const Bgr: React.FC<BgrProps> = ({
   dotSize = 1,
   dotGap = 4,
   children,
+  blur = 0,
 }) => {
   return (
     <Box
@@ -46,9 +48,10 @@ export const Bgr: React.FC<BgrProps> = ({
           height: '100%',
           objectFit: 'cover',
           zIndex: 0,
+          filter: `blur(${blur}px)`,
         }}
       />
-      
+
       <Box
         sx={{
           position: 'absolute',

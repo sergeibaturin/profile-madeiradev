@@ -1,10 +1,18 @@
 import { Home } from './home.tsx'
-import { LayoutWithMenu } from '../../layouts/layout-with-menu.tsx'
+import { Box } from '@mui/material'
+import { Footer } from '../../components/footer'
 
 export const HomePage = () => {
   return (
-    <LayoutWithMenu>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        width: '100%',
+      }}
+    >
       <Home />
-    </LayoutWithMenu>
+      <Footer />
+    </Box>
   )
 }
